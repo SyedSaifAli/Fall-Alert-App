@@ -46,7 +46,7 @@ export default class NotifService {
       title: data.notif.h, // (optional)
       message: "User with contact number " + data.user.cmob + " experienced a fall at " + new Date(data.notif.dc * 1000).toString().split('GMT')[0], // (required)
       playSound: true, // (optional) default: true
-      // soundName: 'alarm.mp3',
+      soundName: 'alarm.mp3',
       number: '10', // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
     });
   }
