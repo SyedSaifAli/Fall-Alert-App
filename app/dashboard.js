@@ -38,7 +38,7 @@ export default class DashBoard extends React.Component{
           'Error',
           data,
           [
-            {text: 'O asjdnkasdnkdsaK'},
+            {text: 'Ok'},
           ]
         );
         return;
@@ -55,6 +55,10 @@ export default class DashBoard extends React.Component{
         });
       }
     });
+  }
+  componentWillUnmount(){
+    this.ws.sendJson('unsubToFallAlert');
+    this.notif.unSubscribedNotif();
   }
   prepareTimeStamp(hours){
     if(!hours) return;

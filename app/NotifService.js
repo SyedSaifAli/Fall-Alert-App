@@ -42,22 +42,29 @@ export default class NotifService {
       color: "red", // (optional) default: system default
       vibrate: true, // (optional) default: true
       vibration: 2000,
-      tag: 'some_tag', // (optional) add tag to message
-      group: "group", // (optional) add group to message
-      ongoing: false, // (optional) set whether this is an "ongoing" notification
-
-      /* iOS only properties */
-      alertAction: 'view', // (optional) default: view
-      category: null, // (optional) default: null
-      userInfo: null, // (optional) default: null (object containing additional notification data)
-
       /* iOS and Android properties */
       title: data.notif.h, // (optional)
       message: "User with contact number " + data.user.cmob + " experienced a fall at " + new Date(data.notif.dc * 1000).toString().split('GMT')[0], // (required)
       playSound: true, // (optional) default: true
-      soundName: 'alarm.mp3',
+      // soundName: 'alarm.mp3',
       number: '10', // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
     });
+  }
+  unSubscribedNotif(){
+    PushNotification.localNotification({
+      /* Android Only Properties */
+      largeIcon: "ic_launcher", // (optional) default: "ic_launcher"
+      smallIcon: "ic_notification", // (optional) default: "ic_notification" with fallback for "ic_launcher"
+      bigText: "Restart the app to receive real time fall alerts",
+      color: "blue", // (optional) default: system default
+      vibrate: true, // (optional) default: true
+      vibration: 300,
+      /* iOS and Android properties */
+      title: "Ajjas Fall alert closed", // (optional)
+      message: "Restart the app to receive real time fall alerts",
+      playSound: true, // (optional) default: true
+      number: '10', // (optional) Valid 32 bit integer specified as string. default: none (Cannot be zero)
+    }); 
   }
 
   checkPermission(cbk) {
